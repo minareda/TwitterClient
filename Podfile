@@ -1,0 +1,12 @@
+target 'Twitter'
+platform :ios, '9.0'
+
+pod 'AFNetworking'
+pod 'Mantle'
+pod 'KVNProgress'
+pod 'NSHash'
+pod 'SDWebImage'
+pod 'SKSplashView'
+pod 'Fabric'
+pod 'TwitterKit'
+pod 'TwitterCore'
