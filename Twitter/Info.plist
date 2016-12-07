@@ -23,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-J4SpmU8jTQZFmT49CwM3zuObf</string>
+				<string>twitterkit-is1l8GcBEqCVqI1nmVBNHlN0b</string>
 			</array>
 		</dict>
 	</array>
@@ -39,9 +39,9 @@
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>J4SpmU8jTQZFmT49CwM3zuObf</string>
+					<string>is1l8GcBEqCVqI1nmVBNHlN0b</string>
 					<key>consumerSecret</key>
-					<string>VBlTm25DTmrSw6dp79Ftme4oIOC9gAJLuQa3zH9fRyt3mlop55</string>
+					<string>eRHuUWeOkqBK99qMz8am2tT9CwcjaX8aNhvB10Ks7Fi7tNNU6w</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -60,6 +60,8 @@
 			<string></string>
 			<key>si4.twimg.com</key>
 			<string></string>
+			<key>abs.twimg.com</key>
+			<string></string>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
@@ -71,8 +73,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

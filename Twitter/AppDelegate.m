@@ -25,23 +25,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController initViewController]];
+    [Fabric with:@[[Twitter class]]];
+    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+    TWTRSession *lastSession = store.session;
+    // FOR DEBUG ONLY
+//    [store logOutUserID:[store.session userID]];
+    
+    if (!lastSession) {
+        
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController initViewController]];
+    } else {
+        
+        FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:followersController];
+    }
+    
     [self.window makeKeyAndVisible];
     [self twitterSplash];
-    [Fabric with:@[[Twitter class]]];
-    return YES;
-}
 
-- (void)twitterSplash   {
-    
-    UIImage *iconImage = [UIImage imageNamed:@"Twitter_Logo_Blue.png"];
-    SKSplashIcon *twitterSplashIcon = [[SKSplashIcon alloc] initWithImage:iconImage animationType:SKIconAnimationTypeBounce];
-    twitterSplashIcon.iconSize = iconImage.size;
-    SKSplashView *splashView = [[SKSplashView alloc] initWithSplashIcon:twitterSplashIcon animationType:SKSplashAnimationTypeBounce];
-    splashView.backgroundColor = [UIColor whiteColor];
-    splashView.animationDuration = 2;
-    [self.window addSubview:splashView];
-    [splashView startAnimation];
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -80,4 +82,19 @@
     // If you handle other (non Twitter Kit) URLs elsewhere in your app, return YES. Otherwise
     return NO;
 }
+
+#pragma mark - Private methods
+
+- (void)twitterSplash   {
+    
+    UIImage *iconImage = [UIImage imageNamed:@"Twitter_Logo_Blue.png"];
+    SKSplashIcon *twitterSplashIcon = [[SKSplashIcon alloc] initWithImage:iconImage animationType:SKIconAnimationTypeBounce];
+    twitterSplashIcon.iconSize = iconImage.size;
+    SKSplashView *splashView = [[SKSplashView alloc] initWithSplashIcon:twitterSplashIcon animationType:SKSplashAnimationTypeBounce];
+    splashView.backgroundColor = [UIColor whiteColor];
+    splashView.animationDuration = 2;
+    [self.window addSubview:splashView];
+    [splashView startAnimation];
+}
+
 @end

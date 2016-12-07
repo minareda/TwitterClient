@@ -8,6 +8,9 @@
 
 #import "LoginViewController.h"
 #import "AppStrings.h"
+#import <KVNProgress.h>
+#import "FollowersViewController.h"
+#import <TwitterKit/TwitterKit.h>
 
 @interface LoginViewController ()
 
@@ -24,6 +27,28 @@
     
     [super viewDidLoad];
     [self setTitle:kLoginTitle];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+        if (session) {
+            
+            [[[Twitter sharedInstance] sessionStore] saveSession:session
+                                                      completion:^(id<TWTRAuthSession>  _Nullable session, NSError * _Nullable error) {
+                                                          NSLog(@"%@", error.localizedDescription);
+                                                      }];
+            FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:followersController];
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        } else {
+            
+            [KVNProgress showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+    [self.view addSubview:logInButton];
+    logInButton.center = self.view.center;
 }
 
 - (void)didReceiveMemoryWarning {
