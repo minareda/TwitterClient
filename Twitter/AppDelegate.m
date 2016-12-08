@@ -13,6 +13,7 @@
 #import "SKSplashIcon.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
+#import "AppStyle.h"
 
 @interface AppDelegate ()
 
@@ -41,8 +42,8 @@
     }
     
     [self.window makeKeyAndVisible];
+    [AppStyle applyTheme];
     [self twitterSplash];
-
     return YES;
 }
 

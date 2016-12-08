@@ -7,6 +7,7 @@
 //
 
 #import "FollowerInfoViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FollowerInfoViewController () {
 
@@ -25,15 +26,18 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self setTitle:_user.fullName];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self setTitle:[NSString stringWithFormat:@"@%@", _user.handle]];
+    [self.tableView setTableHeaderView:_headerView];
+    NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    [_imageViewBackground sd_setImageWithURL:[NSURL URLWithString:bgImageUrl]
+                            placeholderImage:[UIImage imageNamed:@"profile_background_placeholder.png"]];
+    _imageViewProfile.layer.cornerRadius = 4;
+    _imageViewProfile.clipsToBounds = YES;
+    [_headerView setNeedsLayout];
+    [_headerView layoutIfNeeded];
+    [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
     
-    UIImageView *imageViewProfile = [[UIImageView alloc] initWithImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
-    [self.tableView setTableHeaderView:imageViewProfile];
-    
-//    NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-//    [_imageViewBackground sd_setImageWithURL:[NSURL URLWithString:bgImageUrl] placeholderImage:[UIImage imageNamed:@"follower_placeholder.jpg"]];
-//    [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
-
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
     self.dataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:_user.handle
                                                                       userID:[NSString stringWithFormat:@"%ld", _user.userId]

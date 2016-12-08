@@ -18,13 +18,13 @@
 
 @interface FollowersViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
     
-    NSArray *_followers;
+    NSMutableArray *_followers;
     TWTRSession *_currentSession;
     BOOL _loading;
 }
 
+- (void)setup;
 - (void)loadFollowers;
-- (void)didChangePreferredContentSize:(NSNotification *)notification;
 
 @end
 
@@ -35,35 +35,13 @@ static NSString *const CellIDentifier = @"CELLID";
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:@"FollowerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIDentifier];
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
-    
-    // A little trick for removing the cell separators
-    self.tableView.tableFooterView = [UIView new];
-
-    self.tableView.estimatedRowHeight = 90.0f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangePreferredContentSize:)
-                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
-
-    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-    _currentSession = store.session;
-    [self setTitle:[NSString stringWithFormat:kFollowers, [_currentSession userName]]];
+    [self setup];
     [self loadFollowers];
 }
 
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
-}
-
-- (void)dealloc {
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIContentSizeCategoryDidChangeNotification
-                                                  object:nil];
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -99,10 +77,30 @@ static NSString *const CellIDentifier = @"CELLID";
     User *user = [_followers objectAtIndex:indexPath.row];
     FollowerInfoViewController *followerInfoController = [FollowerInfoViewController initViewController];
     [followerInfoController setUser:user];
+    [self setTitle:@" "];
     [self.navigationController pushViewController:followerInfoController animated:YES];
 }
 
 #pragma mark - Private methods
+
+- (void)setup {
+    
+    self.navigationController.delegate = self;
+    _followers = [[NSMutableArray alloc] init];
+    // Setup TableView
+    [self.tableView registerNib:[UINib nibWithNibName:@"FollowerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIDentifier];
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    // For removing the cell separators
+    self.tableView.tableFooterView = [UIView new];
+    // Dynamic Height
+    self.tableView.estimatedRowHeight = 80.0f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    // Title
+    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+    _currentSession = store.session;
+    [self setTitle:[NSString stringWithFormat:kFollowers, [_currentSession userName]]];
+}
 
 - (void)loadFollowers {
     
@@ -120,16 +118,14 @@ static NSString *const CellIDentifier = @"CELLID";
                 
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 NSArray *users = [json objectForKey:@"users"];
-                NSMutableArray *followersList = [[NSMutableArray alloc] init];
                 for (NSDictionary *userDictionary in users) {
                     
                     User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userDictionary error:nil];
                     if (user) {
                         
-                        [followersList addObject:user];
+                        [_followers addObject:user];
                     }
                 }
-                _followers = followersList;
                 _loading = NO;
                 [self.tableView reloadData];
             } else {
@@ -145,11 +141,6 @@ static NSString *const CellIDentifier = @"CELLID";
         NSLog(@"Error: %@", clientError);
         _loading = NO;
     }
-}
-
-- (void)didChangePreferredContentSize:(NSNotification *)notification    {
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods
@@ -188,5 +179,20 @@ static NSString *const CellIDentifier = @"CELLID";
     
     return [UIImage imageNamed:@"no_followers.png"];
 }
+
+#pragma mark - UINavigationControllerDelegate methods
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+    
+    if (viewController == self) {
+    
+        TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+        _currentSession = store.session;
+        [self setTitle:[NSString stringWithFormat:kFollowers, [_currentSession userName]]];
+    }
+}
+
 
 @end

@@ -14,7 +14,7 @@
 - (void)setUser:(User *)user {
 
     _user = user;
-    // removing _normal for higher resolution profile image
+    // removing "_normal" from URL for higher resolution profile image
     NSString *profileImageUrl = [_user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     [_profileImageView sd_setImageWithURL:[NSURL URLWithString:profileImageUrl]
                        placeholderImage:[UIImage imageNamed:@"follower_placeholder.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -29,6 +29,8 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
+    _profileImageView.layer.cornerRadius = 4;
+    _profileImageView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

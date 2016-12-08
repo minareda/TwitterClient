@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FollowersViewController : UITableViewController
+@interface FollowersViewController : UITableViewController <UINavigationControllerDelegate>
 
 @end

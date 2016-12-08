@@ -16,6 +16,7 @@
 @property (nonatomic, strong) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewProfile;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 
 + (id)initViewController;
 

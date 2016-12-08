@@ -14,13 +14,13 @@
 		E03EA8271DF830340035118E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA8261DF830340035118E /* LoginViewController.m */; };
 		E03EA82B1DF83D900035118E /* FollowerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA82A1DF83D900035118E /* FollowerInfoViewController.m */; };
 		E03EA82D1DF83D9B0035118E /* FollowerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */; };
+		E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA82F1DF98EBB0035118E /* AppStyle.m */; };
 		E0AEC7F81DF58232006556EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7F71DF58232006556EE /* main.m */; };
 		E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7FA1DF58232006556EE /* AppDelegate.m */; };
 		E0AEC8031DF58232006556EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0AEC8021DF58232006556EE /* Assets.xcassets */; };
 		E0AEC8061DF58232006556EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0AEC8041DF58232006556EE /* LaunchScreen.storyboard */; };
 		E0AEC8151DF582EA006556EE /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0AEC8141DF582EA006556EE /* LoginView.xib */; };
 		E0AEC8181DF5831E006556EE /* FollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC8171DF5831E006556EE /* FollowersViewController.m */; };
-		E0AEC81C1DF58808006556EE /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC81B1DF58808006556EE /* APIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +37,8 @@
 		E03EA8291DF83D900035118E /* FollowerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerInfoViewController.h; sourceTree = "<group>"; };
 		E03EA82A1DF83D900035118E /* FollowerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerInfoViewController.m; sourceTree = "<group>"; };
 		E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerInfoView.xib; sourceTree = "<group>"; };
+		E03EA82E1DF98EBB0035118E /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
+		E03EA82F1DF98EBB0035118E /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		E0AEC7F31DF58232006556EE /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AEC7F71DF58232006556EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0AEC7F91DF58232006556EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,9 +50,6 @@
 		E0AEC8161DF5831E006556EE /* FollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersViewController.h; sourceTree = "<group>"; };
 		E0AEC8171DF5831E006556EE /* FollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersViewController.m; sourceTree = "<group>"; };
 		E0AEC8191DF58808006556EE /* APIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstants.h; sourceTree = "<group>"; };
-		E0AEC81A1DF58808006556EE /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
-		E0AEC81B1DF58808006556EE /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
-		E0AEC81D1DF58858006556EE /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		E0FDC58D1DF5984500E5C4DB /* AppStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStrings.h; sourceTree = "<group>"; };
 		E5A4064218C1D7E329773FE2 /* Pods-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +122,8 @@
 		E0AEC7F61DF58232006556EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E03EA82E1DF98EBB0035118E /* AppStyle.h */,
+				E03EA82F1DF98EBB0035118E /* AppStyle.m */,
 				E0FDC58D1DF5984500E5C4DB /* AppStrings.h */,
 				E0AEC7F71DF58232006556EE /* main.m */,
 			);
@@ -146,10 +147,10 @@
 			isa = PBXGroup;
 			children = (
 				E0AEC8141DF582EA006556EE /* LoginView.xib */,
+				E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */,
 				E03EA8201DF7303A0035118E /* FollowerCell.h */,
 				E03EA8211DF7303A0035118E /* FollowerCell.m */,
 				E03EA8231DF730460035118E /* FollowerCell.xib */,
-				E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -158,8 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				E0AEC8191DF58808006556EE /* APIConstants.h */,
-				E0AEC81A1DF58808006556EE /* APIManager.h */,
-				E0AEC81B1DF58808006556EE /* APIManager.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -167,7 +166,6 @@
 		E0AEC8101DF582B1006556EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E0AEC81D1DF58858006556EE /* Models.h */,
 				E03EA81D1DF721550035118E /* User.h */,
 				E03EA81E1DF721550035118E /* User.m */,
 			);
@@ -320,12 +318,12 @@
 			files = (
 				E0AEC8181DF5831E006556EE /* FollowersViewController.m in Sources */,
 				E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */,
+				E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */,
 				E03EA81F1DF721550035118E /* User.m in Sources */,
 				E0AEC7F81DF58232006556EE /* main.m in Sources */,
 				E03EA82B1DF83D900035118E /* FollowerInfoViewController.m in Sources */,
 				E03EA8271DF830340035118E /* LoginViewController.m in Sources */,
 				E03EA8221DF7303A0035118E /* FollowerCell.m in Sources */,
-				E0AEC81C1DF58808006556EE /* APIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
