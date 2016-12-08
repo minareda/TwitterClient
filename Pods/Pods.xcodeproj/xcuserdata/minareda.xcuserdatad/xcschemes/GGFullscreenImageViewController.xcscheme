@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8FFA667951CACBD8BCD9072750A85C65'
-               BlueprintName = 'SDWebImage'
+               BlueprintIdentifier = '7373D4CE499A5E1296D2B6DD2B0744A6'
+               BlueprintName = 'GGFullscreenImageViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSDWebImage.a'>
+               BuildableName = 'libGGFullscreenImageViewController.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

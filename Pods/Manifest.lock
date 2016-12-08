@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.11)
+  - GGFullscreenImageViewController (1.0.0)
   - KVNProgress (2.3.1)
   - Mantle (2.1.0):
     - Mantle/extobjc (= 2.1.0)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - Fabric
+  - GGFullscreenImageViewController
   - KVNProgress
   - Mantle
   - NSHash
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  GGFullscreenImageViewController: 17935922bc80806eba3c9a0c22a22ecedc260510
   KVNProgress: 8167b1f19e2758290c0b6143020ed9dcbb0477a1
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
@@ -54,6 +57,6 @@ SPEC CHECKSUMS:
   TwitterCore: a8aea8bdaf2abd6572c8f264707a4ea4dc2d0eab
   TwitterKit: d38c08d31dfd4ba604f95deca6cf8e174b5cbd96
 
-PODFILE CHECKSUM: 482281d21f02a5b5fa3b3116351279b14ca258a8
+PODFILE CHECKSUM: 8e0d921b71f0e8f418110063ba1eb490022a877c
 
 COCOAPODS: 1.0.1
