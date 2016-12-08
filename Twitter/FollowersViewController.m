@@ -21,6 +21,7 @@
     NSMutableArray *_followers;
     TWTRSession *_currentSession;
     BOOL _loading;
+    NSError *_loadingError;
 }
 
 - (void)setup;
@@ -130,6 +131,7 @@ static NSString *const CellIDentifier = @"CELLID";
                 [self.tableView reloadData];
             } else {
                 
+                _loadingError = connectionError;
                 NSLog(@"Error: %@", connectionError);
                 _loading = NO;
             }
@@ -138,6 +140,7 @@ static NSString *const CellIDentifier = @"CELLID";
     }
     else {
         
+        _loadingError = clientError;
         NSLog(@"Error: %@", clientError);
         _loading = NO;
     }
@@ -157,7 +160,16 @@ static NSString *const CellIDentifier = @"CELLID";
         return nil;
     }
     
-    NSString *text = [NSString stringWithFormat:kNoFollowers, [_currentSession userName]];
+    NSString *text;
+    if (_loadingError) {
+        
+        text = [_loadingError localizedDescription];
+        _loadingError = nil;
+    } else {
+        
+        text = [NSString stringWithFormat:kNoFollowers, [_currentSession userName]];
+    }
+    
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = NSTextAlignmentCenter;
