@@ -9,10 +9,9 @@
 #import "FollowerInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FollowerInfoViewController () {
+@interface FollowerInfoViewController ()
 
-    TWTRSession *_currentSession;
-}
+- (void)setup;
 
 @end
 
@@ -26,6 +25,26 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self setup];
+    
+    // Load follower timeline
+    self.dataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:_user.handle
+                                                                      userID:[NSString stringWithFormat:@"%ld", _user.userId]
+                                                                   APIClient:[[TWTRAPIClient alloc] init]
+                                                         maxTweetsPerRequest:10
+                                                              includeReplies:YES
+                                                             includeRetweets:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Private methods
+
+- (void)setup {
+
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:[NSString stringWithFormat:@"@%@", _user.handle]];
     [self.tableView setTableHeaderView:_headerView];
@@ -37,19 +56,6 @@
     [_headerView setNeedsLayout];
     [_headerView layoutIfNeeded];
     [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
-    
-    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
-    self.dataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:_user.handle
-                                                                      userID:[NSString stringWithFormat:@"%ld", _user.userId]
-                                                                   APIClient:client
-                                                         maxTweetsPerRequest:10
-                                                              includeReplies:YES
-                                                             includeRetweets:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
 }
 
 @end
