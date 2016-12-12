@@ -17,6 +17,7 @@
 		E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA82F1DF98EBB0035118E /* AppStyle.m */; };
 		E07AA53A1DFE96FE005A7744 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E07AA5391DFE96FE005A7744 /* APIManager.m */; };
 		E07AA53D1DFE9B85005A7744 /* GetFollowersResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E07AA53C1DFE9B85005A7744 /* GetFollowersResponse.m */; };
+		E07AA5441DFEAB8F005A7744 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E07AA5431DFEAB8F005A7744 /* Reachability.m */; };
 		E0AEC7F81DF58232006556EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7F71DF58232006556EE /* main.m */; };
 		E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7FA1DF58232006556EE /* AppDelegate.m */; };
 		E0AEC8031DF58232006556EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0AEC8021DF58232006556EE /* Assets.xcassets */; };
@@ -46,6 +47,8 @@
 		E07AA53B1DFE9B85005A7744 /* GetFollowersResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFollowersResponse.h; sourceTree = "<group>"; };
 		E07AA53C1DFE9B85005A7744 /* GetFollowersResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFollowersResponse.m; sourceTree = "<group>"; };
 		E07AA53E1DFE9CBC005A7744 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
+		E07AA5421DFEAB8F005A7744 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		E07AA5431DFEAB8F005A7744 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E0AEC7F31DF58232006556EE /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AEC7F71DF58232006556EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0AEC7F91DF58232006556EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		E0AEC80F1DF582A3006556EE /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E07AA5421DFEAB8F005A7744 /* Reachability.h */,
+				E07AA5431DFEAB8F005A7744 /* Reachability.m */,
 				E0AEC8191DF58808006556EE /* APIConstants.h */,
 				E07AA5381DFE96FE005A7744 /* APIManager.h */,
 				E07AA5391DFE96FE005A7744 /* APIManager.m */,
@@ -331,6 +336,7 @@
 				E0AEC8181DF5831E006556EE /* FollowersViewController.m in Sources */,
 				E07AA53D1DFE9B85005A7744 /* GetFollowersResponse.m in Sources */,
 				E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */,
+				E07AA5441DFEAB8F005A7744 /* Reachability.m in Sources */,
 				E07AA53A1DFE96FE005A7744 /* APIManager.m in Sources */,
 				E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */,
 				E03EA81F1DF721550035118E /* User.m in Sources */,

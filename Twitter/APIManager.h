@@ -18,9 +18,12 @@
 }
 
 + (id)sharedManager;
+- (BOOL)isOffline;
 - (BOOL)isAuthenticated;
 - (NSString *)userName;
 - (void)logoutCurrentUser;
-- (void)getUserFollowersFromCursor:(NSString *)cursor success:(void (^)(GetFollowersResponse* response))success failure:(void (^)(NSError *error))failure;
+- (void)getUserFollowersFromCursor:(NSString *)cursor
+                           success:(void (^)(GetFollowersResponse* response))success
+                           failure:(void (^)(NSError *error))failure;
 
 @end

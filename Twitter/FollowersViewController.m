@@ -129,7 +129,7 @@ static NSString *const CellIDentifier = @"CELLID";
     } else {
         
         // Check if you have loaded all followers
-        if ([_cursor isEqualToString:@"0"])
+        if ([_cursor isEqualToString:@"0"] || _loading == YES)
             return;
     }
     
@@ -144,13 +144,19 @@ static NSString *const CellIDentifier = @"CELLID";
         
         if (response) {
             
-            if ([response.users count] > 0)
+            if ([_cursor isEqualToString:@"-1"]) {
+             
+                [_followers removeAllObjects];
+            }
+            
+            if ([response.users count] > 0) {
+                
                 [_followers addObjectsFromArray:response.users];
+            }
             _cursor = response.nextCursor;
             NSLog(@"Cursor: %@", _cursor);
+            [self updateUI];
         }
-        [self updateUI];
-
     } failure:^(NSError *error) {
     
         _loadingError = error;

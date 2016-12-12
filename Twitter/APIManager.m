@@ -8,6 +8,7 @@
 
 #import "APIManager.h"
 #import "APIConstants.h"
+#import "Reachability.h"
 
 @implementation APIManager
 
@@ -34,6 +35,13 @@
     return _apiManager;
 }
 
+- (BOOL)isOffline {
+    
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    return (networkStatus == NotReachable);
+}
+
 - (BOOL)isAuthenticated {
     
     return (_currentSession != nil);
@@ -58,9 +66,26 @@
     NSString *url = [NSString stringWithFormat:kGetFollowers, cursor, [_currentSession userName]];
     NSLog(@"URL: %@", url);
     NSURLRequest *request = [_client URLRequestWithMethod:@"GET" URL:url parameters:nil error:&clientError];
+    if ([self isOffline]) {
+        
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:url];
+        if (data) {
+        
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            GetFollowersResponse *followersResponse = [MTLJSONAdapter modelOfClass:GetFollowersResponse.class fromJSONDictionary:json error:nil];
+            success(followersResponse);
+        } else {
+            
+            success(nil);
+        }
+        return;
+    }
+    
     [_client sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (data) {
             
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:url];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             GetFollowersResponse *followersResponse = [MTLJSONAdapter modelOfClass:GetFollowersResponse.class fromJSONDictionary:json error:nil];
             success(followersResponse);
