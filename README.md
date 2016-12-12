@@ -1,5 +1,5 @@
 # TwitterClient
-Another Twitter Client  
+
 The client is using <a href="https://docs.fabric.io/apple/twitter/overview.html">Fabric Twitter-Kit</a>
 <h1>1. Implements login with Twitter</h1>
 <ul>
