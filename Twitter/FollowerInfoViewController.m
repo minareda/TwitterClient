@@ -49,8 +49,10 @@
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:[NSString stringWithFormat:@"@%@", _user.handle]];
-    [self.tableView setTableHeaderView:_headerView];
-    
+//    [self.tableView setTableHeaderView:_headerView];
+    [self.tableView setParallaxHeaderView:_headerView
+                                      mode:VGParallaxHeaderModeFill
+                                    height:CGRectGetHeight(_headerView.frame)];
     // Load background image
     NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     [_imageViewBackground sd_setImageWithURL:[NSURL URLWithString:bgImageUrl]
@@ -84,6 +86,20 @@
     imageViewController.liftedImageView = [[UIImageView alloc] initWithImage:tappedImageView.image];
     imageViewController.liftedImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self presentViewController:imageViewController animated:YES completion:nil];
+}
+
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView  {
+    
+    // This must be called in order to work
+    [scrollView shouldPositionParallaxHeader];
+    
+    // scrollView.parallaxHeader.progress - is progress of current scroll
+    NSLog(@"Progress: %f", scrollView.parallaxHeader.progress);
+    
+    // This is how you can implement appearing or disappearing of sticky view
+    [scrollView.parallaxHeader.stickyView setAlpha:scrollView.parallaxHeader.progress];
 }
 
 @end

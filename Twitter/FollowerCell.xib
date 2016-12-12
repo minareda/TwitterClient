@@ -23,7 +23,7 @@
                             <constraint firstAttribute="height" constant="19" id="VYb-rg-XmQ"/>
                             <constraint firstAttribute="width" constant="311" id="woe-0C-A39"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,7 +41,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@iminareda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="YSi-5Q-qlf">
-                        <rect key="frame" x="56" y="24" width="311" height="13"/>
+                        <rect key="frame" x="56" y="24" width="311" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UbF-14-Smm" secondAttribute="bottom" constant="-3" id="cWh-fl-HTj"/>
                     <constraint firstAttribute="trailing" secondItem="YSi-5Q-qlf" secondAttribute="trailing" constant="8" id="e5B-8V-Iwe"/>
                     <constraint firstItem="ffd-Cf-gT4" firstAttribute="top" secondItem="M4w-Ub-Vci" secondAttribute="bottom" constant="17" id="efz-hx-e0V"/>
-                    <constraint firstItem="YSi-5Q-qlf" firstAttribute="baseline" secondItem="M4w-Ub-Vci" secondAttribute="baseline" constant="14" id="jCZ-YV-CU3"/>
+                    <constraint firstItem="YSi-5Q-qlf" firstAttribute="baseline" secondItem="M4w-Ub-Vci" secondAttribute="baseline" constant="15.5" id="jCZ-YV-CU3"/>
                     <constraint firstAttribute="trailing" secondItem="ffd-Cf-gT4" secondAttribute="trailing" constant="8" id="nxm-OY-M7e"/>
                     <constraint firstItem="M4w-Ub-Vci" firstAttribute="top" secondItem="hPd-2e-Y7S" secondAttribute="top" constant="5" id="tav-TE-AiE"/>
                 </constraints>
@@ -70,7 +70,7 @@
                 <outlet property="labelName" destination="M4w-Ub-Vci" id="cuO-HO-564"/>
                 <outlet property="profileImageView" destination="UbF-14-Smm" id="sBQ-oX-LcJ"/>
             </connections>
-            <point key="canvasLocation" x="-2029.5" y="-1573"/>
+            <point key="canvasLocation" x="-2125" y="-1621"/>
         </tableViewCell>
     </objects>
 </document>

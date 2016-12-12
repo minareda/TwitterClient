@@ -22,6 +22,7 @@ PODS:
     - Mantle/extobjc (= 2.1.0)
   - Mantle/extobjc (2.1.0)
   - NSHash (1.1.0)
+  - PureLayout (3.0.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -30,6 +31,8 @@ PODS:
     - Fabric
   - TwitterKit (2.6.1):
     - TwitterCore (= 2.6.1)
+  - VGParallaxHeader (0.0.6):
+    - PureLayout
 
 DEPENDENCIES:
   - AFNetworking
@@ -43,6 +46,7 @@ DEPENDENCIES:
   - SKSplashView
   - TwitterCore
   - TwitterKit
+  - VGParallaxHeader
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -52,11 +56,13 @@ SPEC CHECKSUMS:
   KVNProgress: 8167b1f19e2758290c0b6143020ed9dcbb0477a1
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SKSplashView: 8148a4893bf2d3dfe28750bc6fd71ae7cb0dda4a
   TwitterCore: a8aea8bdaf2abd6572c8f264707a4ea4dc2d0eab
   TwitterKit: d38c08d31dfd4ba604f95deca6cf8e174b5cbd96
+  VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
 
-PODFILE CHECKSUM: 8e0d921b71f0e8f418110063ba1eb490022a877c
+PODFILE CHECKSUM: 00aef7ff45aa278edaccccf082f31e7f266b28a0
 
 COCOAPODS: 1.0.1

@@ -14,6 +14,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "AppStyle.h"
+#import "APIManager.h"
 
 @interface AppDelegate ()
 
@@ -27,18 +28,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [Fabric with:@[[Twitter class]]];
-    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-    TWTRSession *lastSession = store.session;
-    // FOR DEBUG ONLY
-//    [store logOutUserID:[store.session userID]];
-    
-    if (!lastSession) {
-        
-        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController initViewController]];
-    } else {
+    if ([[APIManager sharedManager] isAuthenticated]) {
         
         FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:followersController];
+    } else {
+        
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController initViewController]];
     }
     
     [self.window makeKeyAndVisible];

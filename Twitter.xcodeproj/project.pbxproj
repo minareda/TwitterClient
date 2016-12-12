@@ -15,6 +15,8 @@
 		E03EA82B1DF83D900035118E /* FollowerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA82A1DF83D900035118E /* FollowerInfoViewController.m */; };
 		E03EA82D1DF83D9B0035118E /* FollowerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */; };
 		E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA82F1DF98EBB0035118E /* AppStyle.m */; };
+		E07AA53A1DFE96FE005A7744 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E07AA5391DFE96FE005A7744 /* APIManager.m */; };
+		E07AA53D1DFE9B85005A7744 /* GetFollowersResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E07AA53C1DFE9B85005A7744 /* GetFollowersResponse.m */; };
 		E0AEC7F81DF58232006556EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7F71DF58232006556EE /* main.m */; };
 		E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AEC7FA1DF58232006556EE /* AppDelegate.m */; };
 		E0AEC8031DF58232006556EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0AEC8021DF58232006556EE /* Assets.xcassets */; };
@@ -39,6 +41,11 @@
 		E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerInfoView.xib; sourceTree = "<group>"; };
 		E03EA82E1DF98EBB0035118E /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
 		E03EA82F1DF98EBB0035118E /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
+		E07AA5381DFE96FE005A7744 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		E07AA5391DFE96FE005A7744 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		E07AA53B1DFE9B85005A7744 /* GetFollowersResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFollowersResponse.h; sourceTree = "<group>"; };
+		E07AA53C1DFE9B85005A7744 /* GetFollowersResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFollowersResponse.m; sourceTree = "<group>"; };
+		E07AA53E1DFE9CBC005A7744 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		E0AEC7F31DF58232006556EE /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AEC7F71DF58232006556EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E0AEC7F91DF58232006556EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				E0AEC8191DF58808006556EE /* APIConstants.h */,
+				E07AA5381DFE96FE005A7744 /* APIManager.h */,
+				E07AA5391DFE96FE005A7744 /* APIManager.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -166,8 +175,11 @@
 		E0AEC8101DF582B1006556EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E07AA53E1DFE9CBC005A7744 /* Models.h */,
 				E03EA81D1DF721550035118E /* User.h */,
 				E03EA81E1DF721550035118E /* User.m */,
+				E07AA53B1DFE9B85005A7744 /* GetFollowersResponse.h */,
+				E07AA53C1DFE9B85005A7744 /* GetFollowersResponse.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,7 +329,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0AEC8181DF5831E006556EE /* FollowersViewController.m in Sources */,
+				E07AA53D1DFE9B85005A7744 /* GetFollowersResponse.m in Sources */,
 				E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */,
+				E07AA53A1DFE96FE005A7744 /* APIManager.m in Sources */,
 				E03EA8301DF98EBB0035118E /* AppStyle.m in Sources */,
 				E03EA81F1DF721550035118E /* User.m in Sources */,
 				E0AEC7F81DF58232006556EE /* main.m in Sources */,

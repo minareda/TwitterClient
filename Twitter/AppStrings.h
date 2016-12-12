@@ -10,3 +10,4 @@ static NSString* const kLoginTitle = @"Login";
 static NSString* const kFollowers = @"@%@ Followers";
 static NSString* const kLoadingFollowers = @"Loading followers";
 static NSString* const kNoFollowers = @"No followers found for %@!";
+static NSString* const kTryAgain = @"Try again";

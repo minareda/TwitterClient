@@ -7,25 +7,27 @@
 //
 
 #import "FollowersViewController.h"
-#import "AppStrings.h"
 #import <KVNProgress/KVNProgress.h>
-#import "FollowerCell.h"
-#import "User.h"
-#import <TwitterKit/TwitterKit.h>
-#import "APIConstants.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "FollowerCell.h"
+#import "Models.h"
+#import "AppStrings.h"
+#import "AppStyle.h"
+#import "APIManager.h"
+#import "APIConstants.h"
 #import "FollowerInfoViewController.h"
 
 @interface FollowersViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
     
     NSMutableArray *_followers;
-    TWTRSession *_currentSession;
     BOOL _loading;
+    NSString *_cursor;
     NSError *_loadingError;
 }
 
 - (void)setup;
-- (void)loadFollowers;
+- (void)loadFollowers:(id)sender;
+- (void)updateUI;
 
 @end
 
@@ -37,7 +39,7 @@ static NSString *const CellIDentifier = @"CELLID";
     
     [super viewDidLoad];
     [self setup];
-    [self loadFollowers];
+    [self loadFollowers:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +64,12 @@ static NSString *const CellIDentifier = @"CELLID";
     FollowerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIDentifier];
     User *user = [_followers objectAtIndex:indexPath.row];
     [cell setUser:user];
+    
+    if (!_loading && indexPath.row == [_followers count] - 1 && ![_cursor isEqual: @"0"]) {
+        
+        [self loadFollowers:nil];
+    }
+    
     return cell;
 }
 
@@ -88,62 +96,75 @@ static NSString *const CellIDentifier = @"CELLID";
     
     self.navigationController.delegate = self;
     _followers = [[NSMutableArray alloc] init];
+    
     // Setup TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"FollowerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIDentifier];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    _cursor = @"-1";
+    
+    // Pull to refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [AppStyle appColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(loadFollowers:) forControlEvents:UIControlEventValueChanged];
+
     // For removing the cell separators
     self.tableView.tableFooterView = [UIView new];
+    
     // Dynamic Height
     self.tableView.estimatedRowHeight = 80.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     // Title
-    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-    _currentSession = store.session;
-    [self setTitle:[NSString stringWithFormat:kFollowers, [_currentSession userName]]];
+    [self setTitle:[NSString stringWithFormat:kFollowers, [[APIManager sharedManager] userName]]];
 }
 
-- (void)loadFollowers {
+- (void)loadFollowers:(id)sender {
+    
+    // Check if refresh is initiated
+    if (sender) {
+        
+        _cursor = @"-1";
+    } else {
+        
+        // Check if you have loaded all followers
+        if ([_cursor isEqualToString:@"0"])
+            return;
+    }
     
     _loading = YES;
-    [KVNProgress showWithStatus:kLoadingFollowers onView:self.view];
-    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
-    NSError *clientError;
-    NSString *url = [NSString stringWithFormat:kGetFollowers, [_currentSession userName]];
-    NSURLRequest *request = [client URLRequestWithMethod:@"GET" URL:url parameters:nil error:&clientError];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    if([_followers count] == 0) {
+        
+        [KVNProgress showWithStatus:kLoadingFollowers onView:self.view];
+    }
     
-    if (request) {
+    [[APIManager sharedManager] getUserFollowersFromCursor:_cursor success:^(GetFollowersResponse *response) {
         
-        [client sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if (data) {
-                
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                NSArray *users = [json objectForKey:@"users"];
-                for (NSDictionary *userDictionary in users) {
-                    
-                    User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userDictionary error:nil];
-                    if (user) {
-                        
-                        [_followers addObject:user];
-                    }
-                }
-                _loading = NO;
-                [self.tableView reloadData];
-            } else {
-                
-                _loadingError = connectionError;
-                NSLog(@"Error: %@", connectionError);
-                _loading = NO;
-            }
-            [KVNProgress dismiss];
-        }];
-    }
-    else {
-        
-        _loadingError = clientError;
-        NSLog(@"Error: %@", clientError);
-        _loading = NO;
-    }
+        if (response) {
+            
+            if ([response.users count] > 0)
+                [_followers addObjectsFromArray:response.users];
+            _cursor = response.nextCursor;
+            NSLog(@"Cursor: %@", _cursor);
+        }
+        [self updateUI];
+
+    } failure:^(NSError *error) {
+    
+        _loadingError = error;
+        [self updateUI];
+    }];
+}
+
+- (void)updateUI {
+    
+    _loading = NO;
+    [KVNProgress dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods
@@ -167,7 +188,7 @@ static NSString *const CellIDentifier = @"CELLID";
         _loadingError = nil;
     } else {
         
-        text = [NSString stringWithFormat:kNoFollowers, [_currentSession userName]];
+        text = [NSString stringWithFormat:kNoFollowers, [[APIManager sharedManager] userName]];
     }
     
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
@@ -178,7 +199,9 @@ static NSString *const CellIDentifier = @"CELLID";
                                  NSParagraphStyleAttributeName: paragraphStyle};
     
     NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
-    [attributedTitle addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17.0] range:[text rangeOfString:[_currentSession userName]]];
+    [attributedTitle addAttribute:NSFontAttributeName
+                            value:[UIFont boldSystemFontOfSize:17.0]
+                            range:[text rangeOfString:[[APIManager sharedManager] userName]]];
     return attributedTitle;
 }
 
@@ -192,6 +215,17 @@ static NSString *const CellIDentifier = @"CELLID";
     return [UIImage imageNamed:@"no_followers.png"];
 }
 
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state    {
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0f], NSForegroundColorAttributeName: [AppStyle appColor]};
+    return [[NSAttributedString alloc] initWithString:kTryAgain attributes:attributes];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
+    
+    [self loadFollowers:button];
+}
+
 #pragma mark - UINavigationControllerDelegate methods
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -199,12 +233,9 @@ static NSString *const CellIDentifier = @"CELLID";
                     animated:(BOOL)animated {
     
     if (viewController == self) {
-    
-        TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-        _currentSession = store.session;
-        [self setTitle:[NSString stringWithFormat:kFollowers, [_currentSession userName]]];
+
+        [self setTitle:[NSString stringWithFormat:kFollowers, [[APIManager sharedManager] userName]]];
     }
 }
-
 
 @end

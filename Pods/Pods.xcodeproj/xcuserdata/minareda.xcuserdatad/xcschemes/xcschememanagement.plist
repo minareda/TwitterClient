@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PureLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,9 +54,24 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>VGParallaxHeader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1512E62A67C730C9684311F7C73ED4B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3ACE1B52EE74844BDDAA7FCDEDC38642</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>426BC4549A625B5E1E4200D5261A98BF</key>
 		<dict>
 			<key>primary</key>
@@ -62,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53C26526B3801B86F91742314EB0545E</key>
+		<key>61B50B6BB953B95EFD0DD75B90A57B4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FFA667951CACBD8BCD9072750A85C65</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F6C33051ACA12BF2DD6213D7E606BC48</key>
+		<key>95BB0EB1F7F335E0D8F8B5B15792F9BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9D41B5744D522F1849DC4BEE95B4855</key>
 		<dict>
 			<key>primary</key>
 			<true/>
