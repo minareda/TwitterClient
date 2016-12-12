@@ -11,6 +11,7 @@
 #import <KVNProgress.h>
 #import "FollowersViewController.h"
 #import <TwitterKit/TwitterKit.h>
+#import "APIManager.h"
 
 @interface LoginViewController ()
 
@@ -29,6 +30,12 @@
     [self setTitle:kLoginTitle];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.navigationItem setHidesBackButton:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -39,6 +46,7 @@
                                                       completion:^(id<TWTRAuthSession>  _Nullable session, NSError * _Nullable error) {
                                                           NSLog(@"%@", error.localizedDescription);
                                                       }];
+            [[APIManager sharedManager] updateCurrentSession];
             FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:followersController];
             [self.navigationController presentViewController:navigationController animated:YES completion:nil];

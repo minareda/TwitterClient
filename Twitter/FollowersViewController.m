@@ -16,6 +16,7 @@
 #import "APIManager.h"
 #import "APIConstants.h"
 #import "FollowerInfoViewController.h"
+#import "LoginViewController.h"
 
 @interface FollowersViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>{
     
@@ -28,6 +29,7 @@
 - (void)setup;
 - (void)loadFollowers:(id)sender;
 - (void)updateUI;
+- (void)signout;
 
 @end
 
@@ -96,6 +98,12 @@ static NSString *const CellIDentifier = @"CELLID";
     
     self.navigationController.delegate = self;
     _followers = [[NSMutableArray alloc] init];
+    // Add sign out button
+    UIBarButtonItem *buttonSignout = [[UIBarButtonItem alloc] initWithTitle:kSignout
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(signout)];
+    [self.navigationItem setRightBarButtonItem:buttonSignout];
     
     // Setup TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"FollowerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIDentifier];
@@ -171,6 +179,12 @@ static NSString *const CellIDentifier = @"CELLID";
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
+}
+
+- (void)signout {
+
+    [[APIManager sharedManager] logoutCurrentUser];
+    [self.navigationController pushViewController:[LoginViewController initViewController] animated:YES];
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods

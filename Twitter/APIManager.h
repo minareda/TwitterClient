@@ -18,6 +18,7 @@
 }
 
 + (id)sharedManager;
+- (void)updateCurrentSession;
 - (BOOL)isOffline;
 - (BOOL)isAuthenticated;
 - (NSString *)userName;

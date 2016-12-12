@@ -17,8 +17,7 @@
     self = [super init];
     if(!self) return nil;
     
-    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-    _currentSession = store.session;
+    [self updateCurrentSession];
     _client = [[TWTRAPIClient alloc] init];
     return self;
 }
@@ -33,6 +32,12 @@
     });
     
     return _apiManager;
+}
+
+- (void)updateCurrentSession    {
+    
+    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+    _currentSession = store.session;
 }
 
 - (BOOL)isOffline {
