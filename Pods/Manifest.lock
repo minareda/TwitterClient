@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.11)
   - GGFullscreenImageViewController (1.0.0)
@@ -35,7 +20,6 @@ PODS:
     - PureLayout
 
 DEPENDENCIES:
-  - AFNetworking
   - DZNEmptyDataSet
   - Fabric
   - GGFullscreenImageViewController
@@ -49,7 +33,6 @@ DEPENDENCIES:
   - VGParallaxHeader
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   GGFullscreenImageViewController: 17935922bc80806eba3c9a0c22a22ecedc260510
@@ -63,6 +46,6 @@ SPEC CHECKSUMS:
   TwitterKit: d38c08d31dfd4ba604f95deca6cf8e174b5cbd96
   VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
 
-PODFILE CHECKSUM: 00aef7ff45aa278edaccccf082f31e7f266b28a0
+PODFILE CHECKSUM: 14011cda908ca33d621d828b9da405323775479c
 
 COCOAPODS: 1.0.1
