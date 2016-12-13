@@ -12,3 +12,4 @@ static NSString* const kLoadingFollowers = @"Loading followers";
 static NSString* const kNoFollowers = @"No followers found for %@!";
 static NSString* const kTryAgain = @"Try again";
 static NSString* const kSignout = @"Sign out";
+static NSString* const kFollowersCount = @"%lu Follower";

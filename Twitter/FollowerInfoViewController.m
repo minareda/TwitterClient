@@ -8,16 +8,21 @@
 
 #import "FollowerInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "GGFullscreenImageViewController.h"
 
 @interface FollowerInfoViewController ()
 
 - (void)setup;
-- (void)imageTapped:(id)sender;
+
+@property (nonatomic, assign) BOOL statusBarHidden;
+@property (strong, nonatomic) ASMediaFocusManager *mediaFocusManager;
 
 @end
 
 @implementation FollowerInfoViewController
+
+static const int maxTweetsPerRequest = 10;
+static const int profileImageTag = 0;
+static const int backgroundImageTag = 1;
 
 + (id)initViewController    {
     
@@ -33,7 +38,7 @@
     self.dataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:_user.handle
                                                                       userID:[NSString stringWithFormat:@"%ld", _user.userId]
                                                                    APIClient:[[TWTRAPIClient alloc] init]
-                                                         maxTweetsPerRequest:10
+                                                         maxTweetsPerRequest:maxTweetsPerRequest
                                                               includeReplies:YES
                                                              includeRetweets:YES];
 }
@@ -41,6 +46,11 @@
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
+}
+
+- (BOOL)prefersStatusBarHidden  {
+    
+    return self.statusBarHidden;
 }
 
 #pragma mark - Private methods
@@ -53,39 +63,30 @@
     [self.tableView setParallaxHeaderView:_headerView
                                       mode:VGParallaxHeaderModeFill
                                     height:CGRectGetHeight(_headerView.frame)];
+    
+    // Media Viewer
+    self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
+    self.mediaFocusManager.delegate = self;
+    self.mediaFocusManager.elasticAnimation = YES;
+    self.mediaFocusManager.focusOnPinch = YES;
+    
     // Load background image
     NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     [_imageViewBackground sd_setImageWithURL:[NSURL URLWithString:bgImageUrl]
                             placeholderImage:[UIImage imageNamed:@"profile_background_placeholder.png"]];
+    _imageViewBackground.tag = backgroundImageTag;
     
     // Load Profile image
     [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
     _imageViewProfile.layer.cornerRadius = 4;
     _imageViewProfile.clipsToBounds = YES;
+    _imageViewProfile.tag = profileImageTag;
     
-    // Add tap gestures
-    UITapGestureRecognizer *profileImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-    [profileImageTapGesture setNumberOfTapsRequired:1];
-    [_imageViewProfile setUserInteractionEnabled:YES];
-    [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
-    
-    UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-    [backgroundImageTapGesture setNumberOfTapsRequired:1];
-    [_imageViewBackground setUserInteractionEnabled:YES];
-    [_imageViewBackground addGestureRecognizer:backgroundImageTapGesture];
+    [self.mediaFocusManager installOnView:_imageViewProfile];
+    [self.mediaFocusManager installOnView:_imageViewBackground];
 
     [_headerView setNeedsLayout];
     [_headerView layoutIfNeeded];
-}
-
-- (void)imageTapped:(id)sender  {
-    
-    UIImageView *tappedImageView = (UIImageView *)[(UIGestureRecognizer *)sender view];
-    GGFullscreenImageViewController *imageViewController = [[GGFullscreenImageViewController alloc] init];
-    // Giving the controller a copy to maintain the original image intact
-    imageViewController.liftedImageView = [[UIImageView alloc] initWithImage:tappedImageView.image];
-    imageViewController.liftedImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self presentViewController:imageViewController animated:YES completion:nil];
 }
 
 #pragma mark - UIScrollViewDelegate methods
@@ -94,12 +95,50 @@
     
     // This must be called in order to work
     [scrollView shouldPositionParallaxHeader];
-    
-    // scrollView.parallaxHeader.progress - is progress of current scroll
-    NSLog(@"Progress: %f", scrollView.parallaxHeader.progress);
-    
+        
     // This is how you can implement appearing or disappearing of sticky view
     [scrollView.parallaxHeader.stickyView setAlpha:scrollView.parallaxHeader.progress];
+}
+
+#pragma mark - ASMediasFocusDelegate methods
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager {
+    
+    return self;
+}
+
+- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view    {
+    
+    if (view.tag == profileImageTag) {
+        
+        return [NSURL URLWithString:[_user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""]];
+    } else {
+        
+        return [NSURL URLWithString:[_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""]];
+    }
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view   {
+    
+    return @"";
+}
+
+- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager    {
+    
+    self.statusBarHidden = YES;
+    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
+- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager {
+    
+    self.statusBarHidden = NO;
+    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])  {
+        
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
 }
 
 @end

@@ -1,4 +1,7 @@
 PODS:
+  - ASBPlayerScrubbing (0.1)
+  - ASMediaFocusManager (0.6):
+    - ASBPlayerScrubbing (~> 0.1)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.11)
   - GGFullscreenImageViewController (1.0.0)
@@ -20,6 +23,7 @@ PODS:
     - PureLayout
 
 DEPENDENCIES:
+  - ASMediaFocusManager
   - DZNEmptyDataSet
   - Fabric
   - GGFullscreenImageViewController
@@ -33,6 +37,8 @@ DEPENDENCIES:
   - VGParallaxHeader
 
 SPEC CHECKSUMS:
+  ASBPlayerScrubbing: 0fc5e76aad6fdbcf14380734fb7f2c127cd28b66
+  ASMediaFocusManager: 564dc75d983e4e0dacf24855b5f8a7b4d4a9caec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   GGFullscreenImageViewController: 17935922bc80806eba3c9a0c22a22ecedc260510
@@ -46,6 +52,6 @@ SPEC CHECKSUMS:
   TwitterKit: d38c08d31dfd4ba604f95deca6cf8e174b5cbd96
   VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
 
-PODFILE CHECKSUM: 14011cda908ca33d621d828b9da405323775479c
+PODFILE CHECKSUM: f0b99e725e4e03e53673dfbac8e02b566d66d618
 
 COCOAPODS: 1.0.1

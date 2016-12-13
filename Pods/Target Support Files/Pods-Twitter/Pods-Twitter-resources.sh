@@ -80,10 +80,28 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASMediaFocusBasicToolbar.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASMediaFocusController.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASVideoControlView.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_pause.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_pause@2x.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_play.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_play@2x.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_playbig.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_playbig@2x.png"
   install_resource "KVNProgress/KVNProgress/Resources/KVNProgressView.xib"
   install_resource "TwitterKit/iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASMediaFocusBasicToolbar.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASMediaFocusController.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/ASVideoControlView.xib"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_pause.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_pause@2x.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_play.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_play@2x.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_playbig.png"
+  install_resource "ASMediaFocusManager/ASMediaFocusManager/Resources/asmedia_playbig@2x.png"
   install_resource "KVNProgress/KVNProgress/Resources/KVNProgressView.xib"
   install_resource "TwitterKit/iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle"
 fi

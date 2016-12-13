@@ -11,8 +11,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "User.h"
 #import "UIScrollView+VGParallaxHeader.h"
+#import "ASMediaFocusManager.h"
 
-@interface FollowerInfoViewController : TWTRTimelineViewController <UIScrollViewDelegate>
+@interface FollowerInfoViewController : TWTRTimelineViewController <UIScrollViewDelegate, ASMediasFocusDelegate>
 
 @property (nonatomic, strong) User *user;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewBackground;

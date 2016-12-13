@@ -24,6 +24,7 @@
     BOOL _loading;
     NSString *_cursor;
     NSError *_loadingError;
+    UILabel *_labelFooter;
 }
 
 - (void)setup;
@@ -98,6 +99,7 @@ static NSString *const CellIDentifier = @"CELLID";
     
     self.navigationController.delegate = self;
     _followers = [[NSMutableArray alloc] init];
+    
     // Add sign out button
     UIBarButtonItem *buttonSignout = [[UIBarButtonItem alloc] initWithTitle:kSignout
                                                                       style:UIBarButtonItemStylePlain
@@ -109,6 +111,14 @@ static NSString *const CellIDentifier = @"CELLID";
     [self.tableView registerNib:[UINib nibWithNibName:@"FollowerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:CellIDentifier];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    UIView *tableFooter = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 50.0f)];
+    [tableFooter setBackgroundColor:[UIColor whiteColor]];
+    _labelFooter = [[UILabel alloc] initWithFrame:tableFooter.frame];
+    [_labelFooter setTextAlignment:NSTextAlignmentCenter];
+    [_labelFooter setTextColor:[UIColor darkGrayColor]];
+    [_labelFooter setFont:[UIFont italicSystemFontOfSize:13.0f]];
+    [tableFooter addSubview:_labelFooter];
+    [self.tableView setTableFooterView:tableFooter];
     _cursor = @"-1";
     
     // Pull to refresh
@@ -117,8 +127,8 @@ static NSString *const CellIDentifier = @"CELLID";
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self action:@selector(loadFollowers:) forControlEvents:UIControlEventValueChanged];
 
-    // For removing the cell separators
-    self.tableView.tableFooterView = [UIView new];
+//    // For removing the cell separators
+//    self.tableView.tableFooterView = [UIView new];
     
     // Dynamic Height
     self.tableView.estimatedRowHeight = 80.0f;
@@ -179,6 +189,7 @@ static NSString *const CellIDentifier = @"CELLID";
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
+    [_labelFooter setText:[NSString stringWithFormat:kFollowersCount, (unsigned long)_followers.count]];
 }
 
 - (void)signout {
@@ -236,6 +247,11 @@ static NSString *const CellIDentifier = @"CELLID";
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state    {
+    
+    if (_loading) {
+        
+        return nil;
+    }
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0f], NSForegroundColorAttributeName: [AppStyle appColor]};
     return [[NSAttributedString alloc] initWithString:kTryAgain attributes:attributes];

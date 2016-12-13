@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ASBPlayerScrubbing.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ASMediaFocusManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +67,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01D1351D1D1C94356FFE23FF94E5F3F7</key>
+		<key>07E60D4C5E98D6C52A478A1C1A5EEC37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0C2EA0C36E07DC3B6678FF07820A2F90</key>
+		<key>2DB131E67030031FB89B0059EB5D002B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>10726FD64294DBF6EA6A3999233AD0EA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>176012B93E1DE4CCD07E1B00A314B1B9</key>
+		<key>409679F9EA2639ACD29BFBEB0C0F8D6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88A90EB4713FB40C95E2FCB7946BEB60</key>
+		<key>919DB0E1F6C49E152D5BC3D3AEFE4136</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AEFC0063E8F15F82EEDEEC534B258E77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB0D1C58FC67B42EB48F1E4A11544C29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D965818802B6AB4333563CAC0D316CD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
