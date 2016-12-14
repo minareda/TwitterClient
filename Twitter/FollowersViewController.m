@@ -115,7 +115,7 @@ static NSString *const CellIDentifier = @"CELLID";
     [tableFooter setBackgroundColor:[UIColor whiteColor]];
     _labelFooter = [[UILabel alloc] initWithFrame:tableFooter.frame];
     [_labelFooter setTextAlignment:NSTextAlignmentCenter];
-    [_labelFooter setTextColor:[UIColor darkGrayColor]];
+    [_labelFooter setTextColor:[UIColor lightGrayColor]];
     [_labelFooter setFont:[UIFont italicSystemFontOfSize:13.0f]];
     [tableFooter addSubview:_labelFooter];
     [self.tableView setTableFooterView:tableFooter];
@@ -189,7 +189,10 @@ static NSString *const CellIDentifier = @"CELLID";
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
-    [_labelFooter setText:[NSString stringWithFormat:kFollowersCount, (unsigned long)_followers.count]];
+    if ([_followers count] > 0) {
+        
+        [_labelFooter setText:[NSString stringWithFormat:kFollowersCount, (unsigned long)_followers.count]];
+    }
 }
 
 - (void)signout {

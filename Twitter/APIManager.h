@@ -10,6 +10,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "Models.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface APIManager : NSObject {
     
@@ -26,5 +27,7 @@
 - (void)getUserFollowersFromCursor:(NSString *)cursor
                            success:(void (^)(GetFollowersResponse* response))success
                            failure:(void (^)(NSError *error))failure;
-
+- (void)downloadImageWithURL:(NSString *)url
+                     success:(void (^)(UIImage* image))success
+                     failure:(void (^)(NSError *error))failure;
 @end

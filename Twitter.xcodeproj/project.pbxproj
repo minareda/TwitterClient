@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D1AE8BB4FFB4B353D61AAFDE /* libPods-Twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A2F950F1E823CBAE222BAB /* libPods-Twitter.a */; };
+		E032C9A71E017F21007B630E /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E032C9A31E017F21007B630E /* MEExpandableHeaderView.m */; };
+		E032C9A81E017F21007B630E /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E032C9A61E017F21007B630E /* UIImage+ImageEffects.m */; };
 		E03EA81F1DF721550035118E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA81E1DF721550035118E /* User.m */; };
 		E03EA8221DF7303A0035118E /* FollowerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E03EA8211DF7303A0035118E /* FollowerCell.m */; };
 		E03EA8241DF730460035118E /* FollowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E03EA8231DF730460035118E /* FollowerCell.xib */; };
@@ -29,6 +31,10 @@
 /* Begin PBXFileReference section */
 		23A2F950F1E823CBAE222BAB /* libPods-Twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7DAB39210E5F30F730DE4E /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
+		E032C9A21E017F21007B630E /* MEExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEExpandableHeaderView.h; sourceTree = "<group>"; };
+		E032C9A31E017F21007B630E /* MEExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEExpandableHeaderView.m; sourceTree = "<group>"; };
+		E032C9A51E017F21007B630E /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		E032C9A61E017F21007B630E /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		E03EA81D1DF721550035118E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E03EA81E1DF721550035118E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E03EA8201DF7303A0035118E /* FollowerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerCell.h; sourceTree = "<group>"; };
@@ -91,6 +97,25 @@
 				8D7DAB39210E5F30F730DE4E /* Pods-Twitter.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E032C9A11E017F21007B630E /* MEExpandableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E032C9A21E017F21007B630E /* MEExpandableHeaderView.h */,
+				E032C9A31E017F21007B630E /* MEExpandableHeaderView.m */,
+				E032C9A41E017F21007B630E /* ThirdParty */,
+			);
+			path = MEExpandableHeaderView;
+			sourceTree = "<group>";
+		};
+		E032C9A41E017F21007B630E /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				E032C9A51E017F21007B630E /* UIImage+ImageEffects.h */,
+				E032C9A61E017F21007B630E /* UIImage+ImageEffects.m */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		E0AEC7EA1DF58232006556EE = {
@@ -156,6 +181,7 @@
 		E0AEC80E1DF5829C006556EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E032C9A11E017F21007B630E /* MEExpandableHeaderView */,
 				E0AEC8141DF582EA006556EE /* LoginView.xib */,
 				E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */,
 				E03EA8201DF7303A0035118E /* FollowerCell.h */,
@@ -334,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0AEC8181DF5831E006556EE /* FollowersViewController.m in Sources */,
+				E032C9A81E017F21007B630E /* UIImage+ImageEffects.m in Sources */,
+				E032C9A71E017F21007B630E /* MEExpandableHeaderView.m in Sources */,
 				E07AA53D1DFE9B85005A7744 /* GetFollowersResponse.m in Sources */,
 				E0AEC7FB1DF58232006556EE /* AppDelegate.m in Sources */,
 				E07AA5441DFEAB8F005A7744 /* Reachability.m in Sources */,

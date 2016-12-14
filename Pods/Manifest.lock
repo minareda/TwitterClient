@@ -1,16 +1,11 @@
 PODS:
-  - ASBPlayerScrubbing (0.1)
-  - ASMediaFocusManager (0.6):
-    - ASBPlayerScrubbing (~> 0.1)
   - DZNEmptyDataSet (1.8.1)
+  - EXPhotoViewer (1.1.2)
   - Fabric (1.6.11)
-  - GGFullscreenImageViewController (1.0.0)
   - KVNProgress (2.3.1)
   - Mantle (2.1.0):
     - Mantle/extobjc (= 2.1.0)
   - Mantle/extobjc (2.1.0)
-  - NSHash (1.1.0)
-  - PureLayout (3.0.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -19,39 +14,29 @@ PODS:
     - Fabric
   - TwitterKit (2.6.1):
     - TwitterCore (= 2.6.1)
-  - VGParallaxHeader (0.0.6):
-    - PureLayout
 
 DEPENDENCIES:
-  - ASMediaFocusManager
   - DZNEmptyDataSet
+  - EXPhotoViewer
   - Fabric
-  - GGFullscreenImageViewController
   - KVNProgress
   - Mantle
-  - NSHash
   - SDWebImage
   - SKSplashView
   - TwitterCore
   - TwitterKit
-  - VGParallaxHeader
 
 SPEC CHECKSUMS:
-  ASBPlayerScrubbing: 0fc5e76aad6fdbcf14380734fb7f2c127cd28b66
-  ASMediaFocusManager: 564dc75d983e4e0dacf24855b5f8a7b4d4a9caec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EXPhotoViewer: 01d391c4e5f7d25470d92b26837d40a362714ce0
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  GGFullscreenImageViewController: 17935922bc80806eba3c9a0c22a22ecedc260510
   KVNProgress: 8167b1f19e2758290c0b6143020ed9dcbb0477a1
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
-  NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SKSplashView: 8148a4893bf2d3dfe28750bc6fd71ae7cb0dda4a
   TwitterCore: a8aea8bdaf2abd6572c8f264707a4ea4dc2d0eab
   TwitterKit: d38c08d31dfd4ba604f95deca6cf8e174b5cbd96
-  VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
 
-PODFILE CHECKSUM: f0b99e725e4e03e53673dfbac8e02b566d66d618
+PODFILE CHECKSUM: 69b178442d769140a2145bdcf00e1826ae829cbb
 
 COCOAPODS: 1.0.1

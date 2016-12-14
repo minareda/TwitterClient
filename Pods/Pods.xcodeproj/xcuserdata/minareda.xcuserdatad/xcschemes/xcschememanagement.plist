@@ -4,22 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ASBPlayerScrubbing.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ASMediaFocusManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GGFullscreenImageViewController.xcscheme</key>
+		<key>EXPhotoViewer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,17 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NSHash.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Twitter.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,29 +39,9 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>VGParallaxHeader.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07E60D4C5E98D6C52A478A1C1A5EEC37</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2DB131E67030031FB89B0059EB5D002B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>409679F9EA2639ACD29BFBEB0C0F8D6E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>426BC4549A625B5E1E4200D5261A98BF</key>
 		<dict>
 			<key>primary</key>
@@ -97,32 +57,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7373D4CE499A5E1296D2B6DD2B0744A6</key>
+		<key>8FEB14AA82C66B9F031C996B957519A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7880189788A66CB7DB65A3E0FEED2F26</key>
+		<key>D25050285D9FBB6389FC492FC9F5A282</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>919DB0E1F6C49E152D5BC3D3AEFE4136</key>
+		<key>D75D3D848676A91BC176709A863A29E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEFC0063E8F15F82EEDEEC534B258E77</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CB0D1C58FC67B42EB48F1E4A11544C29</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D965818802B6AB4333563CAC0D316CD9</key>
+		<key>F04AE76F2BD2F612C8F7A53BCB621853</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -101,4 +101,20 @@
     }];
 }
 
+- (void)downloadImageWithURL:(NSString *)url success:(void (^)(UIImage* image))success failure:(void (^)(NSError *error))failure  {
+    
+    SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
+    [downloader downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {}
+                           completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                               
+                               if (image && finished) {
+                                   
+                                   success(image);
+                               } else {
+                                   
+                                   failure(error);
+                               }
+                           }];
+}
+
 @end

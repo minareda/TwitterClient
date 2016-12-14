@@ -8,13 +8,14 @@
 
 #import "FollowerInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "APIManager.h"
+#import "EXPhotoViewer.h"
 
 @interface FollowerInfoViewController ()
 
 - (void)setup;
-
-@property (nonatomic, assign) BOOL statusBarHidden;
-@property (strong, nonatomic) ASMediaFocusManager *mediaFocusManager;
+- (UIView *)createPageViewWithText:(NSString*)text;
+- (void)imageTapped:(id)sender;
 
 @end
 
@@ -48,96 +49,81 @@ static const int backgroundImageTag = 1;
     [super didReceiveMemoryWarning];
 }
 
-- (BOOL)prefersStatusBarHidden  {
-    
-    return self.statusBarHidden;
-}
-
 #pragma mark - Private methods
 
 - (void)setup {
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:[NSString stringWithFormat:@"@%@", _user.handle]];
-//    [self.tableView setTableHeaderView:_headerView];
-    [self.tableView setParallaxHeaderView:_headerView
-                                      mode:VGParallaxHeaderModeFill
-                                    height:CGRectGetHeight(_headerView.frame)];
-    
-    // Media Viewer
-    self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
-    self.mediaFocusManager.delegate = self;
-    self.mediaFocusManager.elasticAnimation = YES;
-    self.mediaFocusManager.focusOnPinch = YES;
-    
-    // Load background image
-    NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    [_imageViewBackground sd_setImageWithURL:[NSURL URLWithString:bgImageUrl]
-                            placeholderImage:[UIImage imageNamed:@"profile_background_placeholder.png"]];
-    _imageViewBackground.tag = backgroundImageTag;
     
     // Load Profile image
     [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
     _imageViewProfile.layer.cornerRadius = 4;
     _imageViewProfile.clipsToBounds = YES;
     _imageViewProfile.tag = profileImageTag;
-    
-    [self.mediaFocusManager installOnView:_imageViewProfile];
-    [self.mediaFocusManager installOnView:_imageViewBackground];
 
-    [_headerView setNeedsLayout];
-    [_headerView layoutIfNeeded];
+    // Load background image
+    NSArray *pages = @[[self createPageViewWithText:[_user fullName]]];
+    self.headerView.pages = pages;
+    
+    NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    [[APIManager sharedManager] downloadImageWithURL:bgImageUrl success:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            _headerView.backgroundImage = image;
+            _headerView.backgroundImageView.tag = backgroundImageTag;
+            [self.tableView setTableHeaderView:_headerView];
+            [self.tableView setContentOffset:CGPointZero animated:YES];
+            
+            // Add tap gestures
+            UITapGestureRecognizer *profileImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+            [profileImageTapGesture setNumberOfTapsRequired:1];
+            [_imageViewProfile setUserInteractionEnabled:YES];
+            [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
+            
+            UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+            [backgroundImageTapGesture setNumberOfTapsRequired:1];
+            [_headerView.backgroundImageView setUserInteractionEnabled:YES];
+            [_headerView.backgroundImageView  addGestureRecognizer:backgroundImageTapGesture];
+            
+            [_headerView bringSubviewToFront:_headerView.backgroundImageView];
+            [_headerView bringSubviewToFront:_imageViewProfile];
+        });
+    } failure:^(NSError *error) {
+    
+        _headerView.backgroundImage = [UIImage imageNamed:@"profile_background_placeholder.png"];
+        [self.tableView setTableHeaderView:_headerView];
+    }];
+}
+
+- (UIView*)createPageViewWithText:(NSString*)text   {
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 100)];
+    label.font = [UIFont boldSystemFontOfSize:20.0];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.shadowColor = [UIColor darkGrayColor];
+    label.shadowOffset = CGSizeMake(0, 1);
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.text = text;
+    return label;
+}
+
+- (void)imageTapped:(id)sender  {
+    
+    UIImageView *tappedImageView = (UIImageView *)[(UIGestureRecognizer *)sender view];
+    [EXPhotoViewer showImageFrom:tappedImageView];
 }
 
 #pragma mark - UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView  {
     
-    // This must be called in order to work
-    [scrollView shouldPositionParallaxHeader];
+    if (scrollView == self.tableView)   {
         
-    // This is how you can implement appearing or disappearing of sticky view
-    [scrollView.parallaxHeader.stickyView setAlpha:scrollView.parallaxHeader.progress];
-}
-
-#pragma mark - ASMediasFocusDelegate methods
-
-- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager {
-    
-    return self;
-}
-
-- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view    {
-    
-    if (view.tag == profileImageTag) {
-        
-        return [NSURL URLWithString:[_user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""]];
-    } else {
-        
-        return [NSURL URLWithString:[_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""]];
-    }
-}
-
-- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view   {
-    
-    return @"";
-}
-
-- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager    {
-    
-    self.statusBarHidden = YES;
-    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
-}
-
-- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager {
-    
-    self.statusBarHidden = NO;
-    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])  {
-        
-        [self setNeedsStatusBarAppearanceUpdate];
+        [self.headerView offsetDidUpdate:scrollView.contentOffset];
     }
 }
 

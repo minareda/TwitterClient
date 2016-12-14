@@ -10,15 +10,13 @@
 #import <TwitterKit/TwitterKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "User.h"
-#import "UIScrollView+VGParallaxHeader.h"
-#import "ASMediaFocusManager.h"
+#import "MEExpandableHeaderView.h"
 
-@interface FollowerInfoViewController : TWTRTimelineViewController <UIScrollViewDelegate, ASMediasFocusDelegate>
+@interface FollowerInfoViewController : TWTRTimelineViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) User *user;
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewProfile;
-@property (strong, nonatomic) IBOutlet VGParallaxHeader *headerView;
+@property (strong, nonatomic) IBOutlet MEExpandableHeaderView *headerView;
 
 + (id)initViewController;
 

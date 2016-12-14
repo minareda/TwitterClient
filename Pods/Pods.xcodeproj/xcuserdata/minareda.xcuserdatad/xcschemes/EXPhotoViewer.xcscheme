@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8FEB14AA82C66B9F031C996B957519A9'
-               BlueprintName = 'Pods-Twitter'
+               BlueprintIdentifier = 'D25050285D9FBB6389FC492FC9F5A282'
+               BlueprintName = 'EXPhotoViewer'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-Twitter.a'>
+               BuildableName = 'libEXPhotoViewer.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

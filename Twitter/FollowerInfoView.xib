@@ -5,14 +5,12 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FollowerInfoViewController">
             <connections>
                 <outlet property="headerView" destination="caF-1C-dYR" id="tQ8-Wi-Sfv"/>
-                <outlet property="imageViewBackground" destination="fIb-nT-mMv" id="cEC-7V-p8A"/>
                 <outlet property="imageViewProfile" destination="qjp-sA-UQo" id="0ew-L6-URv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="qV6-pl-pw3"/>
             </connections>
@@ -24,39 +22,26 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="-678" y="28"/>
         </view>
-        <view contentMode="scaleToFill" id="caF-1C-dYR" customClass="VGParallaxHeader">
+        <view contentMode="scaleToFill" id="caF-1C-dYR" customClass="MEExpandableHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="640" height="238"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIb-nT-mMv">
-                    <rect key="frame" x="0.0" y="0.0" width="640" height="180"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="640" id="1r6-DN-NtM"/>
-                        <constraint firstAttribute="width" secondItem="fIb-nT-mMv" secondAttribute="height" multiplier="32:9" id="imK-af-4cs"/>
-                        <constraint firstAttribute="height" constant="180" id="x3o-Ul-hA0"/>
-                    </constraints>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qjp-sA-UQo">
-                    <rect key="frame" x="20" y="138" width="80" height="80"/>
+                    <rect key="frame" x="7" y="151" width="80" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="3sv-lm-s4q"/>
-                        <constraint firstAttribute="width" constant="80" id="jfk-Vx-FMM"/>
+                        <constraint firstAttribute="height" constant="80" id="9mn-eR-Pmx"/>
+                        <constraint firstAttribute="width" constant="80" id="x9T-vm-h9l"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="fIb-nT-mMv" firstAttribute="leading" secondItem="caF-1C-dYR" secondAttribute="leading" id="84e-jW-o4L"/>
-                <constraint firstItem="qjp-sA-UQo" firstAttribute="leading" secondItem="caF-1C-dYR" secondAttribute="leading" constant="20" id="86B-au-w4r"/>
-                <constraint firstItem="fIb-nT-mMv" firstAttribute="top" secondItem="caF-1C-dYR" secondAttribute="top" id="Ezw-e6-dHr"/>
-                <constraint firstItem="fIb-nT-mMv" firstAttribute="top" secondItem="caF-1C-dYR" secondAttribute="top" id="Mzi-Vu-Kc4"/>
-                <constraint firstAttribute="trailing" secondItem="fIb-nT-mMv" secondAttribute="trailing" id="bDC-pR-lLe"/>
-                <constraint firstItem="fIb-nT-mMv" firstAttribute="leading" secondItem="caF-1C-dYR" secondAttribute="leading" id="f10-az-XOa"/>
-                <constraint firstAttribute="bottom" secondItem="qjp-sA-UQo" secondAttribute="bottom" constant="20" id="g7U-PA-kop"/>
-                <constraint firstAttribute="bottom" secondItem="qjp-sA-UQo" secondAttribute="bottom" constant="20" id="mBr-YH-h0y"/>
+                <constraint firstItem="qjp-sA-UQo" firstAttribute="leading" secondItem="caF-1C-dYR" secondAttribute="leading" constant="7" id="OoX-0k-nwB"/>
+                <constraint firstAttribute="bottom" secondItem="qjp-sA-UQo" secondAttribute="bottom" constant="7" id="fOL-Zs-m9M"/>
+                <constraint firstItem="qjp-sA-UQo" firstAttribute="top" secondItem="caF-1C-dYR" secondAttribute="top" constant="151" id="zz5-Zd-RIX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1509" y="-265"/>
+            <point key="canvasLocation" x="-1690" y="-265"/>
         </view>
     </objects>
 </document>

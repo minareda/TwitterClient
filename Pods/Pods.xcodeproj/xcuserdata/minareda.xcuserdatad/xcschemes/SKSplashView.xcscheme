@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '409679F9EA2639ACD29BFBEB0C0F8D6E'
+               BlueprintIdentifier = 'F04AE76F2BD2F612C8F7A53BCB621853'
                BlueprintName = 'SKSplashView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSKSplashView.a'>
