@@ -24,4 +24,24 @@
              };
 }
 
+#pragma mark - JSON Transformers
+
++ (NSValueTransformer *)profileImageUrlJSONTransformer {
+    
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *url, BOOL *success, NSError *__autoreleasing *error) {
+        
+        // removing "_normal" from URL for higher resolution profile image
+        return [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    }];
+}
+
++ (NSValueTransformer *)backgroundImageUrlJSONTransformer {
+    
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *url, BOOL *success, NSError *__autoreleasing *error) {
+        
+        // removing "_normal" from URL for higher resolution background image
+        return [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    }];
+}
+
 @end

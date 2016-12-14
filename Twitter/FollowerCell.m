@@ -14,10 +14,9 @@
 - (void)setUser:(User *)user {
 
     _user = user;
-    // removing "_normal" from URL for higher resolution profile image
-    NSString *profileImageUrl = [_user.profileImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    [_profileImageView sd_setImageWithURL:[NSURL URLWithString:profileImageUrl]
+    [_profileImageView sd_setImageWithURL:[NSURL URLWithString:_user.profileImageUrl]
                        placeholderImage:[UIImage imageNamed:@"follower_placeholder.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                           
                            _user.profileimage = image;
                        }];
     

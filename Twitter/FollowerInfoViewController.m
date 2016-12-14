@@ -22,8 +22,6 @@
 @implementation FollowerInfoViewController
 
 static const int maxTweetsPerRequest = 10;
-static const int profileImageTag = 0;
-static const int backgroundImageTag = 1;
 
 + (id)initViewController    {
     
@@ -60,18 +58,15 @@ static const int backgroundImageTag = 1;
     [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
     _imageViewProfile.layer.cornerRadius = 4;
     _imageViewProfile.clipsToBounds = YES;
-    _imageViewProfile.tag = profileImageTag;
 
     // Load background image
     NSArray *pages = @[[self createPageViewWithText:[_user fullName]]];
     self.headerView.pages = pages;
     
-    NSString *bgImageUrl = [_user.backgroundImageUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    [[APIManager sharedManager] downloadImageWithURL:bgImageUrl success:^(UIImage *image) {
+    [[APIManager sharedManager] downloadImageWithURL:_user.backgroundImageUrl success:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _headerView.backgroundImage = image;
-            _headerView.backgroundImageView.tag = backgroundImageTag;
             [self.tableView setTableHeaderView:_headerView];
             [self.tableView setContentOffset:CGPointZero animated:YES];
             
