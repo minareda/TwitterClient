@@ -104,18 +104,18 @@
 			children = (
 				E032C9A21E017F21007B630E /* MEExpandableHeaderView.h */,
 				E032C9A31E017F21007B630E /* MEExpandableHeaderView.m */,
-				E032C9A41E017F21007B630E /* ThirdParty */,
 			);
 			path = MEExpandableHeaderView;
 			sourceTree = "<group>";
 		};
-		E032C9A41E017F21007B630E /* ThirdParty */ = {
+		E032C9A41E017F21007B630E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				E032C9A51E017F21007B630E /* UIImage+ImageEffects.h */,
 				E032C9A61E017F21007B630E /* UIImage+ImageEffects.m */,
 			);
-			path = ThirdParty;
+			name = Categories;
+			path = MEExpandableHeaderView/ThirdParty;
 			sourceTree = "<group>";
 		};
 		E0AEC7EA1DF58232006556EE = {
@@ -181,6 +181,7 @@
 		E0AEC80E1DF5829C006556EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E032C9A41E017F21007B630E /* Categories */,
 				E032C9A11E017F21007B630E /* MEExpandableHeaderView */,
 				E0AEC8141DF582EA006556EE /* LoginView.xib */,
 				E03EA82C1DF83D9B0035118E /* FollowerInfoView.xib */,
