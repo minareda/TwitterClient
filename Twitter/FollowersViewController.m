@@ -31,12 +31,16 @@
 - (void)loadFollowers:(id)sender;
 - (void)updateUI;
 - (void)signout;
+- (BOOL)APIExceededLimit;
+- (void)removeErrorToResumeLoadingFollowers;
 
 @end
 
 @implementation FollowersViewController
 
 static NSString *const CellIDentifier = @"CELLID";
+static long const APIRateLimitErrorCode = 429;
+static long const APIRateLimitErrorTimeLimit = 15*60;
 
 - (void)viewDidLoad {
     
@@ -68,7 +72,7 @@ static NSString *const CellIDentifier = @"CELLID";
     User *user = [_followers objectAtIndex:indexPath.row];
     [cell setUser:user];
     
-    if (!_loading && indexPath.row == [_followers count] - 1 && ![_cursor isEqual: @"0"]) {
+    if (!_loading && indexPath.row == [_followers count] - 1 && ![_cursor isEqual: @"0"] && ![self APIExceededLimit]) {
         
         [self loadFollowers:nil];
     }
@@ -126,9 +130,6 @@ static NSString *const CellIDentifier = @"CELLID";
     self.refreshControl.backgroundColor = [AppStyle appColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self action:@selector(loadFollowers:) forControlEvents:UIControlEventValueChanged];
-
-//    // For removing the cell separators
-//    self.tableView.tableFooterView = [UIView new];
     
     // Dynamic Height
     self.tableView.estimatedRowHeight = 80.0f;
@@ -162,6 +163,7 @@ static NSString *const CellIDentifier = @"CELLID";
         
         if (response) {
             
+            _loadingError = nil;
             if ([_cursor isEqualToString:@"-1"]) {
              
                 [_followers removeAllObjects];
@@ -205,6 +207,23 @@ static NSString *const CellIDentifier = @"CELLID";
 
     [[APIManager sharedManager] logoutCurrentUser];
     [self.navigationController pushViewController:[LoginViewController initViewController] animated:YES];
+}
+
+- (BOOL)APIExceededLimit    {
+    
+    if (_loadingError) {
+        
+        [self performSelector:@selector(removeErrorToResumeLoadingFollowers) withObject:nil afterDelay:APIRateLimitErrorTimeLimit];
+        return ([[_loadingError.userInfo valueForKey:kAPIErrorCodeKey] longValue] == APIRateLimitErrorCode);
+    } else {
+        
+        return NO;
+    }
+}
+
+- (void)removeErrorToResumeLoadingFollowers {
+    
+    _loadingError = nil;
 }
 
 #pragma mark - DZNEmptyDataSetSource Methods
