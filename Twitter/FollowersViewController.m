@@ -173,12 +173,18 @@ static NSString *const CellIDentifier = @"CELLID";
             }
             _cursor = response.nextCursor;
             NSLog(@"Cursor: %@", _cursor);
-            [self updateUI];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self updateUI];
+            });
         }
     } failure:^(NSError *error) {
     
         _loadingError = error;
-        [self updateUI];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self updateUI];
+        });
     }];
 }
 
@@ -218,7 +224,7 @@ static NSString *const CellIDentifier = @"CELLID";
     NSString *text;
     if (_loadingError) {
         
-        text = [_loadingError localizedDescription];
+        text = [_loadingError localizedFailureReason];
         _loadingError = nil;
     } else {
         

@@ -65,10 +65,11 @@ static const int maxTweetsPerRequest = 10;
     [profileImageTapGesture setNumberOfTapsRequired:1];
     [_imageViewProfile setUserInteractionEnabled:YES];
     [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
-
-    [_backgroundImageActivityIndicator startAnimating];
+    
     // Load background image
-    [[APIManager sharedManager] downloadImageWithURL:_user.backgroundImageUrl success:^(UIImage *image) {
+    [_backgroundImageActivityIndicator startAnimating];
+    NSString *backgroundImageUrl = (_user.bannerUrl) ? _user.bannerUrl : _user.backgroundImageUrl;
+    [[APIManager sharedManager] downloadImageWithURL:backgroundImageUrl success:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _headerView.backgroundImage = image;
@@ -78,10 +79,14 @@ static const int maxTweetsPerRequest = 10;
             UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
             [backgroundImageTapGesture setNumberOfTapsRequired:1];
             [_headerView.backgroundImageView setUserInteractionEnabled:YES];
-            [_headerView.backgroundImageView  addGestureRecognizer:backgroundImageTapGesture];
+            [_headerView.backgroundImageView addGestureRecognizer:backgroundImageTapGesture];
         });
     } failure:^(NSError *error) {
     
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            [_backgroundImageActivityIndicator stopAnimating];
+        });
     }];
 }
 

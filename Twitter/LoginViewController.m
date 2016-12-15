@@ -47,12 +47,19 @@
                                                           NSLog(@"%@", error.localizedDescription);
                                                       }];
             [[APIManager sharedManager] updateCurrentSession];
-            FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:followersController];
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                FollowersViewController *followersController = [[FollowersViewController alloc] initWithStyle:UITableViewStylePlain];
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:followersController];
+                [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+            });
         } else {
             
-            [KVNProgress showErrorWithStatus:[error localizedDescription]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [KVNProgress showErrorWithStatus:[error localizedDescription]];
+            });
         }
     }];
     [self.view addSubview:logInButton];

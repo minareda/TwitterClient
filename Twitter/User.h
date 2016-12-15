@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSString *handle;
 @property (nonatomic, strong) NSString *bio;
 @property (nonatomic, strong) UIImage *profileimage;
+@property (nonatomic, strong) NSString *bannerUrl;
 
 @end

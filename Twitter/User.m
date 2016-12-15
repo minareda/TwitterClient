@@ -20,7 +20,8 @@
              @"profileImageUrl": @"profile_image_url_https",
              @"backgroundImageUrl": @"profile_background_image_url_https",
              @"handle": @"screen_name",
-             @"bio": @"description"
+             @"bio": @"description",
+             @"bannerUrl" : @"profile_banner_url"
              };
 }
 
