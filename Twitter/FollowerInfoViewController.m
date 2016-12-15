@@ -14,7 +14,6 @@
 @interface FollowerInfoViewController ()
 
 - (void)setup;
-- (UIView *)createPageViewWithText:(NSString*)text;
 - (void)imageTapped:(id)sender;
 
 @end
@@ -60,9 +59,6 @@ static const int maxTweetsPerRequest = 10;
     _imageViewProfile.clipsToBounds = YES;
 
     // Load background image
-    NSArray *pages = @[[self createPageViewWithText:[_user fullName]]];
-    self.headerView.pages = pages;
-    
     [[APIManager sharedManager] downloadImageWithURL:_user.backgroundImageUrl success:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -80,30 +76,12 @@ static const int maxTweetsPerRequest = 10;
             [backgroundImageTapGesture setNumberOfTapsRequired:1];
             [_headerView.backgroundImageView setUserInteractionEnabled:YES];
             [_headerView.backgroundImageView  addGestureRecognizer:backgroundImageTapGesture];
-            
-            [_headerView bringSubviewToFront:_headerView.backgroundImageView];
-            [_headerView bringSubviewToFront:_imageViewProfile];
         });
     } failure:^(NSError *error) {
     
         _headerView.backgroundImage = [UIImage imageNamed:@"profile_background_placeholder.png"];
         [self.tableView setTableHeaderView:_headerView];
     }];
-}
-
-- (UIView*)createPageViewWithText:(NSString*)text   {
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 260, 100)];
-    label.font = [UIFont boldSystemFontOfSize:20.0];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.shadowColor = [UIColor darkGrayColor];
-    label.shadowOffset = CGSizeMake(0, 1);
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.text = text;
-    return label;
 }
 
 - (void)imageTapped:(id)sender  {

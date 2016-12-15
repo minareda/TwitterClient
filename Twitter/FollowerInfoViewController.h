@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "User.h"
 #import "MEExpandableHeaderView.h"
+#import "User.h"
 
 @interface FollowerInfoViewController : TWTRTimelineViewController <UIScrollViewDelegate>
 
