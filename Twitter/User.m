@@ -21,7 +21,7 @@
              @"backgroundImageUrl": @"profile_background_image_url_https",
              @"handle": @"screen_name",
              @"bio": @"description",
-             @"bannerUrl" : @"profile_banner_url"
+             @"bannerUrl" : @"profile_banner_url",
              };
 }
 
@@ -42,6 +42,15 @@
         
         // removing "_normal" from URL for higher resolution background image
         return [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    }];
+}
+
++ (NSValueTransformer *)bannerUrlJSONTransformer {
+    
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *url, BOOL *success, NSError *__autoreleasing *error) {
+        
+        // Banner with Mobile Retina resolution
+        return [url stringByAppendingString:@"/mobile_retina"];
     }];
 }
 
