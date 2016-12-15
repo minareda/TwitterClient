@@ -71,8 +71,6 @@ static const int maxTweetsPerRequest = 10;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _headerView.backgroundImage = image;
-            //[self.tableView setTableHeaderView:_headerView];
-            [self.tableView setContentOffset:CGPointZero animated:YES];
             
             // Add background image tap gestures
             UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
