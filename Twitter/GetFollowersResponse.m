@@ -32,6 +32,7 @@
             
             User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userDictionary error:nil];
             [usersArray addObject:user];
+            // We could have used TWTRUser model that is inside TwitterKit framework but i prefered to create my user class
         }
         return usersArray;
     }];

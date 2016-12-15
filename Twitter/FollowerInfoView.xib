@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FollowerInfoViewController">
             <connections>
+                <outlet property="backgroundImageActivityIndicator" destination="FMM-Vw-xU8" id="wCh-rh-8DL"/>
                 <outlet property="headerView" destination="caF-1C-dYR" id="tQ8-Wi-Sfv"/>
                 <outlet property="imageViewProfile" destination="qjp-sA-UQo" id="0ew-L6-URv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="qV6-pl-pw3"/>
@@ -33,15 +34,20 @@
                         <constraint firstAttribute="width" constant="80" id="x9T-vm-h9l"/>
                     </constraints>
                 </imageView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="FMM-Vw-xU8">
+                    <rect key="frame" x="310" y="109" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="qjp-sA-UQo" firstAttribute="leading" secondItem="caF-1C-dYR" secondAttribute="leading" constant="7" id="OoX-0k-nwB"/>
+                <constraint firstItem="FMM-Vw-xU8" firstAttribute="centerY" secondItem="caF-1C-dYR" secondAttribute="centerY" id="PDK-F6-JhX"/>
+                <constraint firstItem="FMM-Vw-xU8" firstAttribute="centerX" secondItem="caF-1C-dYR" secondAttribute="centerX" id="dg3-Ka-DP9"/>
                 <constraint firstAttribute="bottom" secondItem="qjp-sA-UQo" secondAttribute="bottom" constant="7" id="fOL-Zs-m9M"/>
                 <constraint firstItem="qjp-sA-UQo" firstAttribute="top" secondItem="caF-1C-dYR" secondAttribute="top" constant="151" id="zz5-Zd-RIX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1690" y="-265"/>
+            <point key="canvasLocation" x="-1744" y="-294"/>
         </view>
     </objects>
 </document>

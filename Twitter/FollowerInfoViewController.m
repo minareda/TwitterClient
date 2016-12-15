@@ -66,11 +66,13 @@ static const int maxTweetsPerRequest = 10;
     [_imageViewProfile setUserInteractionEnabled:YES];
     [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
 
+    [_backgroundImageActivityIndicator startAnimating];
     // Load background image
     [[APIManager sharedManager] downloadImageWithURL:_user.backgroundImageUrl success:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _headerView.backgroundImage = image;
+            [_backgroundImageActivityIndicator stopAnimating];
             
             // Add background image tap gestures
             UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
