@@ -52,26 +52,29 @@ static const int maxTweetsPerRequest = 10;
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:[NSString stringWithFormat:@"@%@", _user.handle]];
+    [self.tableView setTableHeaderView:_headerView];
+    _headerView.backgroundImage = [UIImage imageNamed:@"profile_background_placeholder.png"];
     
     // Load Profile image
     [_imageViewProfile setImage:(_user.profileimage) ? _user.profileimage : [UIImage imageNamed:@"follower_placeholder.jpg"]];
     _imageViewProfile.layer.cornerRadius = 4;
     _imageViewProfile.clipsToBounds = YES;
+    
+    // Add profile image tap gestures
+    UITapGestureRecognizer *profileImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    [profileImageTapGesture setNumberOfTapsRequired:1];
+    [_imageViewProfile setUserInteractionEnabled:YES];
+    [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
 
     // Load background image
     [[APIManager sharedManager] downloadImageWithURL:_user.backgroundImageUrl success:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _headerView.backgroundImage = image;
-            [self.tableView setTableHeaderView:_headerView];
+            //[self.tableView setTableHeaderView:_headerView];
             [self.tableView setContentOffset:CGPointZero animated:YES];
             
-            // Add tap gestures
-            UITapGestureRecognizer *profileImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-            [profileImageTapGesture setNumberOfTapsRequired:1];
-            [_imageViewProfile setUserInteractionEnabled:YES];
-            [_imageViewProfile addGestureRecognizer:profileImageTapGesture];
-            
+            // Add background image tap gestures
             UITapGestureRecognizer *backgroundImageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
             [backgroundImageTapGesture setNumberOfTapsRequired:1];
             [_headerView.backgroundImageView setUserInteractionEnabled:YES];
@@ -79,8 +82,6 @@ static const int maxTweetsPerRequest = 10;
         });
     } failure:^(NSError *error) {
     
-        _headerView.backgroundImage = [UIImage imageNamed:@"profile_background_placeholder.png"];
-        [self.tableView setTableHeaderView:_headerView];
     }];
 }
 
